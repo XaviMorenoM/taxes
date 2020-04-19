@@ -6,10 +6,16 @@
   "author": "XaviMorenoM <xavier.moreno.martinez@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "run:dev": "pm2 start ecosystem.config.js && npm run pm2:watch",
+    "run:prod": "pm2 start ecosystem --env prod",
+    "pm2:watch": "pm2 log"
+  },
   "devDependencies": {
     "@types/express": "^4.17.6",
     "tslint": "^6.1.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "pm2": "^4.3.0"
   },
   "dependencies": {
     "express": "^4.17.1"
