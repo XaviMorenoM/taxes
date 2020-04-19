@@ -1,5 +1,9 @@
 import mongoose from 'mongoose'
-import payer from './models/payer'
+import payer, { IPayer } from './models/payer'
+
+export interface Model {
+  payer: IPayer
+}
 
 export const models = { payer }
 
