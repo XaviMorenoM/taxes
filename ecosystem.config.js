@@ -4,11 +4,14 @@ module.exports = {
 			name: 'taxes.backend',
 			script: 'index.ts',
 			env: {
-				watch: ['.'],
+				watch: true,
 				PORT: 8080
 			},
 			env_prod: {
 				watch: false
+			},
+			watch_options: {
+				useFsEvents: false
 			}
 		}
 	]

@@ -7,8 +7,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "run:dev": "pm2 start ecosystem.config.js && npm run pm2:watch",
-    "run:prod": "pm2 start ecosystem --env prod",
+    "run:dev": "pm2-dev start ecosystem.config.js && npm run pm2:watch",
+    "run:prod": "pm2 start ecosystem.config.js --env prod",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
     "pm2:watch": "pm2 log"
   },
   "devDependencies": {
@@ -16,9 +17,11 @@
     "tslint": "^6.1.1",
     "typescript": "^3.8.3",
     "pm2": "^4.3.0",
-    "prettier": "^2.0.4"
+    "prettier": "^2.0.4",
+    "@types/mongoose": "^5.7.12"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9"
   }
 }
