@@ -1,7 +1,7 @@
-import prayer from './models/prayer'
+import payer from './models/payer'
 
 const modelNameToActions = {
-  prayer
+  payer
 }
 
 export type availableModelsWithActions = keyof typeof modelNameToActions
