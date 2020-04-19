@@ -1,6 +1,6 @@
 import express from 'express'
 import manager from './db/manager'
-import wireModel from './db/server/wireModel'
+import wireModel from './server/wireModel'
 
 export default (port: number) => {
 	const app = express()
