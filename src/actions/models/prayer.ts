@@ -1,4 +1,4 @@
 export default {
-	get: true,
-	post: () => {}
+  get: true,
+  post: () => {}
 }
