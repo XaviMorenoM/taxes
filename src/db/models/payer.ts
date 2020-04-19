@@ -8,7 +8,7 @@ export default mongoose.model(
       insertedAt: Date
     },
     {
-      collection: 'prayer'
+      collection: 'payer'
     }
   )
 )
