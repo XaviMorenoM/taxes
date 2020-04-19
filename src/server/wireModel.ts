@@ -1,12 +1,11 @@
-import mongoose from 'mongoose'
 import { Express } from 'express'
-import actionsForModel, {
-  availableModelsWithActions
-} from '../actions/actionsForModel'
+import actionsForModel from '../actions/actionsForModel'
+import { models } from '../db/manager'
+import { ValueOf } from '../utils/typescript'
 
-export default (model: mongoose.Model<any>, app: Express) => {
-  const modelName = model.collection.collectionName
-  const actions = actionsForModel(modelName as availableModelsWithActions)
+export default (model: ValueOf<typeof models>, app: Express) => {
+  const modelName = model.collection.collectionName as keyof typeof models
+  const actions = actionsForModel(modelName)
 
   if (!actions) throw new Error(`There are no actions for ${modelName}`)
 
@@ -15,6 +14,12 @@ export default (model: mongoose.Model<any>, app: Express) => {
   }
 
   if (actions.post) {
-    app.post(`/${modelName}`, (req, res) => res.send({ created: true }))
+    const executor =
+      typeof actions.post === 'function'
+        ? (data: {}) => actions.post(data)
+        : (data: {}) => new model(data)
+    app.post(`/${modelName}`, async (req, res) => {
+      await res.send(executor(req.body))
+    })
   }
 }

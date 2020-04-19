@@ -1,4 +1,6 @@
+import payer from '../../db/models/payer'
+
 export default {
   get: true,
-  post: () => {}
+  post: (data: {}) => payer.create(data)
 }
