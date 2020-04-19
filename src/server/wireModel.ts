@@ -19,7 +19,8 @@ export default (model: ValueOf<typeof models>, app: Express) => {
     const executor =
       typeof actions.post === 'function'
         ? (data: ValueOf<Model>) => actions.post(data)
-        : (data: ValueOf<Model>) => new model(data)
+        : (data: ValueOf<Model>) => model.create(data)
+
     app.post(`/${modelName}`, async (req, res) => {
       res.send(await executor(req.body))
     })
