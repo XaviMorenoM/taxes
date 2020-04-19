@@ -10,9 +10,11 @@ export default (model: ValueOf<typeof models>, app: Express) => {
   if (!actions) throw new Error(`There are no actions for ${modelName}`)
 
   if (actions.get) {
-    app.get(`/${modelName}`, async (req, res) =>
-      res.send(await model.find().exec())
-    )
+    app.get(`/${modelName}`, async (req, res) => {
+      const elements = await model.find(req.query).exec()
+      if (elements.length === 0) res.sendStatus(404)
+      else res.send(elements.length === 1 ? elements[0] : elements)
+    })
   }
 
   if (actions.post) {
