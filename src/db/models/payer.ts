@@ -2,8 +2,13 @@ import mongoose from 'mongoose'
 
 export default mongoose.model(
 	'Payer',
-	new mongoose.Schema({
-		name: String,
-		insertedAt: Date
-	})
+	new mongoose.Schema(
+		{
+			name: String,
+			insertedAt: Date
+		},
+		{
+			collection: 'prayer'
+		}
+	)
 )
